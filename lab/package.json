@@ -1,0 +1,29 @@
+{
+  "name": "lab1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npm-watch",
+    "start": "node index.js"
+  },
+  "watch": {
+    "start": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duynhpc05141/WD18303_NODEJS_NGOHOANGDUY.git"
+  },
+  "author": "duynhpc05141",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duynhpc05141/WD18303_NODEJS_NGOHOANGDUY/issues"
+  },
+  "homepage": "https://github.com/duynhpc05141/WD18303_NODEJS_NGOHOANGDUY#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.3",
+    "npm-watch": "^0.11.0"
+  }
+}
