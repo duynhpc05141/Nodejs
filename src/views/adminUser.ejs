@@ -1,0 +1,34 @@
+<%- include('headerAdmin.ejs') %>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Người dùng</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="mb-2">
+                <a class="btn btn-dark" href="/addUser">Thêm</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered"  width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ Tên</th>
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Địa chỉ</th>
+                            <th>Quản trị</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listUser">
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<%- include('footerAdmin.ejs') %>

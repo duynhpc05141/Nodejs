@@ -1,0 +1,82 @@
+<%- include('headerAdmin.ejs') %>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Thêm sản phẩm</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <form >
+                    <div class="col-md-8 position-relative">
+                      <label for="validationTooltip01" class="form-label">Tên sản phẩm</label>
+                      <input type="text" class="form-control" id="name" required>
+                      <div class="valid-tooltip">
+                        Looks good!
+                      </div>
+                    </div>
+                    <div class="col-md-8 position-relative p-2">
+                      <label for="validationTooltip02" class="form-label">Giá</label>
+                      <input type="number" class="form-control" id="price" min="0" required>
+                      <div class="valid-tooltip">
+                        Looks good!
+                      </div>
+                    </div>
+                    <div class="col-md-8 position-relative p-2">
+                        <label for="validationTooltip02" class="form-label">Giới thiệu</label>
+                        <input type="text" class="form-control" id="description" required>
+                        <div class="valid-tooltip">
+                          Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-8 position-relative p-2">
+                        <label for="validationTooltip02" class="form-label">Mô tả</label>
+                        <textarea  id="status" class="form-control" cols="30" rows="10"></textarea>
+                        <div class="valid-tooltip">
+                          Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-8 position-relative p-2">
+                        <label for="validationTooltip02" class="form-label">Sale</label>
+                        <input type="number" class="form-control" id="sale" min="0" required>
+                        <div class="valid-tooltip">
+                          Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-8 position-relative p-2">
+                        <label for="validationTooltip02" class="form-label">View</label>
+                        <input type="number" class="form-control" id="view" min="0" required>
+                        <div class="valid-tooltip">
+                          Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-12 position-relative mt-4">
+                      <label for="validationTooltip04" class="form-label">Thể loại</label>
+                      <select class="form-select" id="cate" required>
+                        <option value="0">Tiểu thuyết</option>
+                        <option value="1">Sức khỏe</option>
+                        <option value="2">Thơ</option>
+                        <option value="3">Kinh dị</option>
+                      </select>
+                      <div class="invalid-tooltip">
+                        Please select a valid state.
+                      </div>
+                    </div>
+                    <div class="col-md-8 position-relative p-2">
+                        <label for="validationTooltip02" class="form-label">Hình ảnh</label>
+                        <input type="file" class="form-control" id="img"  required>
+                        <div class="valid-tooltip">
+                          Looks good!
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                      <button class="btn btn-dark" type="submit" id="btnAddProduct">Thêm</button>
+                      <a href="/product" class="btn btn-dark" >Danh sách</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<%- include('footerAdmin.ejs') %>

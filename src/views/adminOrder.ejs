@@ -1,0 +1,32 @@
+<%- include('headerAdmin.ejs') %>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Hóa đơn</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <div class="mb-2">
+                    <a class="btn btn-dark" href="/addOrder">Thêm</a>
+                </div>
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Khách hàng</th>
+                            <th>Sản phẩm</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listCart">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<%- include('footerAdmin.ejs') %>
