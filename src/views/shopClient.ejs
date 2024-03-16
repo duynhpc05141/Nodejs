@@ -35,7 +35,9 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__categories">
                                             <ul class="nice-scroll" >
-                                                <div id="categoryList"></div>
+                                                <% for( categoryList of categoryList){ %>
+                                                    <a href="#" class="col-8" ><li ><%= categoryList.category_name %></li></a>
+                                                 <%} %>   
                                             </ul>
                                         </div>
                                     </div>
@@ -47,7 +49,39 @@
             </div>
             <div class="col-lg-9">
                 
-                <div class="row " id="productList">
+                <div class="row ">
+                    <% for( productList of productList ) {
+                        let maxSentences =15;
+                        let price = productList.product_price;
+                        let content = productList.product_description; // Nội dung của bài viết
+                        // Tách nội dung thành các câu
+                        let sentences = content.split(' ');
+                        // Khai báo biến limitedContent ở ngoài để sử dụng sau
+                        let limitedContent ;
+                        if (sentences.length > maxSentences) {
+                            // Nếu số câu vượt quá giới hạn, chỉ hiển thị số câu đã chọn và thêm dấu '...'
+                            limitedContent = sentences.slice(0, maxSentences).join(' ') + '...';
+                        } else {
+                            // Nếu số câu không vượt quá giới hạn, không thêm dấu '...'
+                            limitedContent = content;
+                        };
+                        let formattedPrice = price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });%>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                            <a href="/productDetail/id=<%= productList._id%>">
+                              <div class="product__item">
+                                <div class="product__item__pic" >
+                                  <img src="<%= productList.product_image %>" alt="item">
+                                  <span class="label">Mới</span>
+                                </div>
+                                <div class="product__item__text">
+                                  <h6><b><%= productList.product_name %></b></h6>
+                                  <h5 style="color: red;"><%= formattedPrice %></h5>
+                                  <p><%= limitedContent %></p> 
+                                </div>
+                              </div>
+                            </a>
+                          </div>
+                    <%}%>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">

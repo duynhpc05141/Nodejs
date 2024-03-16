@@ -23,6 +23,23 @@
                         </tr>
                     </thead>
                     <tbody id="listUser">
+                        <% for(users of users) {
+                            let stt = 1;
+                            let role = (users.role_id == 1) ? 'Admin' : 'User';
+                        %>
+                        <tr>
+                            <td><%=stt%></td>
+                            <td><%=users.customer_name%></td>
+                            <td><%=users.customer_email%></td>
+                            <td><%=users.customer_phone_number%></td>
+                            <td><%=users.customer_address%></td>
+                            <td><%=role%></td>
+                            <td>
+                                <a href="/updateUser" class="btn btn-primary">Sửa</a>
+                                <a class="btn btn-danger" data-user-id="" id="btnDelete">Xóa</a>
+                            </td>
+                          </tr>
+                        <% }%>
                     </tbody>
                 </table>
                 
