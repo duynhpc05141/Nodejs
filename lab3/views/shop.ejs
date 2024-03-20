@@ -1,0 +1,41 @@
+<%- include('header.ejs') %>
+<header>
+  <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Poly Book Store</a>
+              </li>
+              <% for(let cate of category){ %>
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/shop/<%= cate.id%>"><%= cate.nameCategory %></a>
+              </li>
+              <%}%>
+          </ul>
+        </div>
+      </div>
+  </nav>
+</header>
+<main class="container">
+  <div class="row">
+      <% for (let product of products) { %>
+          <article class="col-md-3 mt-3">
+              <div class="card product-item ">
+                  <header class="card-header">
+                      <h1 class="product-title"><%= product.nameProduct %></h1>
+                  </header>
+                  <div class="card-body">
+                      <img src="images/<%= product.images %>" class="card-img-top" alt="A Book">
+                      <h2 class="product-price">$<%= product.price %></h2>
+                      <p class="product-description"><%= product.description %></p>
+                  </div>
+                  <div class="card-footer">
+                      <button class="btn btn-primary">Add to Cart</button>
+                  </div>
+              </div>
+          </article>
+      <% } %>
+  </div>
+</main>
+<%- include('footer.ejs') %>
