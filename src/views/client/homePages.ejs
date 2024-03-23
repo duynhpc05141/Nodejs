@@ -1,0 +1,79 @@
+<%- include('headerClient.ejs') %>
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+        <div class="hero__items set-bg" data-setbg="/img/banner/banner3.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 col-md-8">
+                        <div class="hero__text">
+                            <h2 style="color: white;">Thế giới sách diệu kì</h2>
+                            <p style="color: antiquewhite;">Mang đến một thế giới diệu kì qua từng trang sách </p>
+                            <a href="#" class="primary-btn">Mua ngay<span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__items set-bg" data-setbg="/img/banner/Bookaesthetic.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 col-md-8">
+                        <div class="hero__text">
+                            <h2 style="color: white;">Thế giới sách diệu kì</h2>
+                            <p style="color: antiquewhite;">Mang đến một thế giới diệu kì qua từng trang sách </p>
+                            <a href="#" class="primary-btn">Mua ngay<span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="product spad ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="filter__controls">
+                    <li >Sản phẩm mới</li>
+                </ul>
+            </div>
+            <div class="row product__filter">
+                <% for( product of product ) { 
+                    let maxSentences =15;
+                    let price = product.product_price;
+                    let content = product.product_description; // Nội dung của bài viết
+                    // Tách nội dung thành các câu
+                    let sentences = content.split(' ');
+                    // Khai báo biến limitedContent ở ngoài để sử dụng sau
+                    let limitedContent ;
+                    if (sentences.length > maxSentences) {
+                        // Nếu số câu vượt quá giới hạn, chỉ hiển thị số câu đã chọn và thêm dấu '...'
+                        limitedContent = sentences.slice(0, maxSentences).join(' ') + '...';
+                      } else {
+                        // Nếu số câu không vượt quá giới hạn, không thêm dấu '...'
+                        limitedContent = content;
+                      };
+                    let formattedPrice = price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });%>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                        <a href="/productDetail/<%= product._id%>">
+                            <div class="product__item">
+                                <div class="product__item__pic">
+                                    <img src="<%= product.product_image %>" alt="item">
+                                    <span class="label">Mới</span>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><b><%= product.product_name %></b></h6>
+                                    <h5 style="color: red;"><%= formattedPrice %></h5>
+                                    <p><%= limitedContent %></p> 
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <% } %> 
+            </div>
+        </div>
+        <div class="row product__filter" id="productLient"></div>
+        <div id="pagination" class="pagination" style="height: 50px;"></div>
+    </div>
+</section>
+<%- include('footerClient.ejs') %>

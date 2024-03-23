@@ -1,0 +1,63 @@
+<%- include('../headerAdmin.ejs') %>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Sản phẩm</h1>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="mb-2">
+                <a class="btn btn-dark" href="/admin/addProduct">Thêm</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered"  width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Giá</th>
+                            <th>Thể loại</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%let stt = 1; for(product of products) {
+                            
+                            let price = product.product_price;
+                            let formattedPrice = price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                            let categoryText = "";
+                            if (product.cate_id === 0) {
+                                categoryText = "Tiểu thuyết";
+                                } else if (product.cate_id === 1) {
+                                categoryText = "Sức khỏe";
+                                } else if (product.cate_id === 2) {
+                                categoryText = "Thơ";
+                                } else if (product.cate_id === 3) {
+                                categoryText = "Kinh dị";
+                                } else {
+                                categoryText = "Không xác định";
+                                }%>
+                            <tr>
+                                <td><%= stt %></td>
+                                <td><%= product.product_name %></td>
+                                <td> <img src="<%= product.product_image %>" height="50px"></td>
+                                <td><%= formattedPrice %></td>
+                                <td><%= categoryText %></td>
+                                <td>
+                                    <a href="" class="btn btn-dark">chi tiết</a>
+                                    <a href="" class="btn btn-primary">Sửa</a>
+                                    <a class="btn btn-danger"  id="btnDelete">Xóa</a>
+                                </td>
+                              </tr>
+                        <%stt++ } %>   
+                    </tbody>   
+
+                </table>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+<%- include('../footerAdmin.ejs') %>
