@@ -1,26 +1,26 @@
 const express = require("express");
-const { MongoClient} = require('mongodb');
-const mongoose = require('mongoose');
 const router = express.Router();
-const Product = require('../model/product');
-const Category = require('../model/category');
-const Users = require('../model/users');
 const {getAdminPage} = require('../controller/admin/home/adminController');
-const {getAdminUser, getAddUser} = require('../controller/admin/user/userAdminController');
+const {getAdminUser, getAddUser,postAddUser,getUpdateUser,postUpdateUser,deleteUserById} = require('../controller/admin/user/userAdminController');
 const {getAdminCate, getAddCate} = require('../controller/admin/category/categoryAdminController');
-const {getAdminProduct,getAddProduct} = require('../controller/admin/product/productAdminContronller');
+const {getAdminProduct,getAddProduct, getProductDetail} = require('../controller/admin/product/productAdminContronller');
 
 
 //==========================================
-//****** Home admin ***** */
+//****** Home admin ******/
 router.get('/', getAdminPage);
 
-//******** User ************* */
+//******** User **************/
 router.get('/user',getAdminUser);
 router.get('/addUser',getAddUser);
+router.post('/addUser',postAddUser);
+router.get('/updateUser/:id',getUpdateUser);
+router.post('/updateUser/:id',postUpdateUser);
+router.get('/deleteUser/:id',deleteUserById);
 
 //************ product ************* */
 router.get('/product', getAdminProduct);
+router.get('/productDetail/:id', getProductDetail);
 router.get('/addProduct', getAddProduct);
 
 //************ Category ************* */

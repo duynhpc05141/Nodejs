@@ -1,12 +1,10 @@
 const express = require("express");
 var bodyParser = require("body-parser");
 const app = express();
-const path = require("path");
 const viewsEngine = require("./config/viewsEngine");
 const port = 8080;
 const webRouter = require('./routers/web');
 const adminRouter = require('./routers/admin');
-const router = require("./routers/web");
 const { connect } = require('./config/database');
 
 // config 

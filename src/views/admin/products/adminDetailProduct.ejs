@@ -1,0 +1,67 @@
+<%- include('../headerAdmin.ejs') %>
+<div class="product__details__pic">
+</div>
+<div class="product__details__content">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <% 
+            let categoryText = "";
+            switch (products.cate_id ) {
+                case 0:
+                    categoryText = "Tiểu thuyết";
+                    break;
+                case 1:
+                    categoryText = "Sức khỏe";
+                    break;
+                case 2:
+                    categoryText = "Thơ";
+                    break;
+                case 3:
+                    categoryText = "Kinh dị";
+                    break;
+                default:
+                    categoryText = "Không xác định";
+                    break;
+            }
+            let price = products.product_price;
+            let formattedPrice = price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            %>
+            <div class="col-lg-4">
+                <div class="product__details__text">
+                    <div class="product__details__pic__item mb-4">
+                        <img src="<%= products.product_image %>" alt="" height="400px">
+                    </div>
+                    <h2><b><%= products.product_name %></b></h2>
+                    <h4><%= formattedPrice %></h4>
+                    <p><%= products.product_description %></p>
+                    <div class="product__details__last__option">
+                        <ul>
+                            <li><span>Thể loại:</span> <%= categoryText %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-lg-5">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <h3>Mô tả</h3>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-5" role="tabpanel">
+                            <div class="product__details__tab__content">
+                                <div class="product__details__tab__content__item">
+                                    <p><%= products.product_status %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../footerAdmin.ejs') %>

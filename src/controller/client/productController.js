@@ -43,7 +43,6 @@ const getProductByCate = async (req, res) =>{
     try {
         const categoryList = await Category.find({});
         const productByCate = await Product.find({cate_id: req.params.id});
-        console.log(productByCate);
         // // return product;
         res.render("../views/client/productByCate.ejs", { productList: productByCate,categoryList: categoryList });
     } catch (error) {
