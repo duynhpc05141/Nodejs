@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const Users = require('../../../model/users');
 
 //================================================
@@ -18,33 +19,34 @@ const getAddUser = (req,res) => {
 };
 
 
-const postAddUser = (req, res) => {
-    // Lấy dữ liệu từ request body
-    // const {address,email,name,phone,pass,role} = req.body;
-    let address = req.body.address;
-    let email = req.body.email;
-    let name = req.body.name;
-    let phone = req.body.phone;
-    let pass = req.body.pass;
-    let role = req.body.role;
-
-    const newUser = new Users({
-        customer_address: address,
-        customer_email: email,
-        customer_name: name,
-        customer_phone_number: phone,
-        password: pass,
-        role_id: role
-    });
-    // Lưu dữ liệu vào cơ sở dữ liệu
-    newUser.save()
-        .then(savedData => {
-            res.render('../views/admin/users/adminAddUser.ejs');
-        })
-        .catch(error => {
-            res.status(500).send('Đã xảy ra lỗi khi lưu dữ liệu vào cơ sở dữ liệu.');
+const postAddUser = async (req, res) => {
+    try {
+        let {name, phone, email , address , pass, role } = req.body;
+        // Kiểm tra xem người dùng đã tồn tại chưa  
+        const existingUser = await Users.findOne({ customer_email: email });
+        if (existingUser) {
+            // Nếu người dùng đã tồn tại, trả về một phản hồi lỗi
+            return res.status(400).send('Email already exists');
+        }
+        // Băm mật khẩu
+        const hashedPassword = await bcrypt.hash(pass, 10);
+        // Tạo người dùng mới
+        const userNew = new Users({
+            customer_address: address,
+            customer_email: email,
+            customer_name: name,
+            customer_phone_number: phone,
+            password: hashedPassword,
+            role_id: role
         });
-}
+        await userNew.save();
+        const users = await Users.find({});
+        res.render('../views/admin/users/adminUser.ejs',{users:users});
+    } catch (error) {
+        console.error('Error during registration:', error);
+        res.status(500).send(error);
+    }
+};
 
 
 const getUpdateUser = async (req, res) =>{
@@ -84,7 +86,7 @@ const postUpdateUser = async (req, res) => {
 
 const deleteUserById = async (req, res) => {
     try {
-        await Users.deleteOne({ _id:req.params.id });
+        await Users.findByIdAndDelete({ _id:req.params.id });
         const users = await Users.find({});
         res.render('../views/admin/users/adminUser.ejs',{users:users});
     } catch (error) {

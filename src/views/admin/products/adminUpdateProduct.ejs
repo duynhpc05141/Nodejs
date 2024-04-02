@@ -2,61 +2,61 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Thêm sản phẩm</h1>
+    <h1 class="h3 mb-2 text-gray-800">Cập nhật sản phẩm</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <form action="/admin/addProduct" method="post" enctype="multipart/form-data">
+                <form action="/admin/updateProduct/<%= products._id%>?_method=PUT" method="post" enctype="multipart/form-data">
                     <div class="col-md-8 position-relative">
                       <label for="validationTooltip01" class="form-label">Tên sản phẩm</label>
-                      <input type="text" class="form-control" id="name" name="name" required>
+                      <input type="text" class="form-control" id="name" name="name" value="<%= products.product_name %>" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
                     </div>
                     <div class="col-md-8 position-relative p-2">
                       <label for="validationTooltip02" class="form-label">Giá</label>
-                      <input type="number" class="form-control" id="price" name="price" min="0" required>
+                      <input type="number" class="form-control" id="price" name="price" min="0"  value="<%= products.product_price %>" required>
                       <div class="valid-tooltip">
                         Looks good!
                       </div>
                     </div>
                     <div class="col-md-8 position-relative p-2">
                         <label for="validationTooltip02" class="form-label">Giới thiệu</label>
-                        <input type="text" class="form-control" id="description" name="description" required>
+                        <input type="text" class="form-control" id="description" name="description" value="<%= products.product_description %>" required>
                         <div class="valid-tooltip">
                           Looks good!
                         </div>
                     </div>
                     <div class="col-md-8 position-relative p-2">
                         <label for="validationTooltip02" class="form-label">Mô tả</label>
-                        <textarea  id="status" class="form-control" cols="30" rows="10" name="status"></textarea>
+                        <textarea  id="status" class="form-control" cols="30" rows="10" name="status" ><%= products.product_status %></textarea>
                         <div class="valid-tooltip">
                           Looks good!
                         </div>
                     </div>
                     <div class="col-md-8 position-relative p-2">
                         <label for="validationTooltip02" class="form-label">Sale</label>
-                        <input type="number" class="form-control" id="sale" min="0" name="sale" required>
+                        <input type="number" class="form-control" id="sale" min="0" name="sale" value="<%= products.sale %>" required>
                         <div class="valid-tooltip">
                           Looks good!
                         </div>
                     </div>
                     <div class="col-md-8 position-relative p-2">
                         <label for="validationTooltip02" class="form-label">View</label>
-                        <input type="number" class="form-control" id="view" min="0" name="view" required>
+                        <input type="number" class="form-control" id="view" min="0" name="view" value="<%= products.view %>" required>
                         <div class="valid-tooltip">
                           Looks good!
                         </div>
                     </div>
                     <div class="col-md-12 position-relative mt-4">
                       <label for="validationTooltip04" class="form-label">Thể loại</label>
-                      <select class="form-select" id="cate" name="cate" required>
-                        <option value="0">Tiểu thuyết</option>
-                        <option value="1">Sức khỏe</option>
-                        <option value="2">Thơ</option>
-                        <option value="3">Kinh dị</option>
+                      <select class="form-select" id="cate" name="cate" value="<%= products.cate_id %>" required>
+                        <option value="0" <%= products.cate_id == 0 ? 'selected' : '' %>>Tiểu thuyết</option>
+                        <option value="1" <%= products.cate_id == 1 ? 'selected' : '' %>>Sức khỏe</option>
+                        <option value="2" <%= products.cate_id == 2 ? 'selected' : '' %>>Thơ</option>
+                        <option value="3" <%= products.cate_id == 3 ? 'selected' : '' %>>Kinh dị</option>
                       </select>
                       <div class="invalid-tooltip">
                         Please select a valid state.
@@ -64,13 +64,14 @@
                     </div>
                     <div class="col-md-8 position-relative p-2">
                         <label for="validationTooltip02" class="form-label">Hình ảnh</label>
-                        <input type="file" class="form-control" id="img" name="img" required>
+                        <img src="<%= products.product_image %>" height="200px">
+                        <input type="file" class="form-control" id="img" name="img" >
                         <div class="valid-tooltip">
                           Looks good!
                         </div>
                     </div>
                     <div class="col-12 mt-4">
-                      <button class="btn btn-dark" type="submit" id="btnAddProduct">Thêm</button>
+                      <button class="btn btn-dark" type="submit" id="btnAddProduct">Cập nhật</button>
                       <a href="/admin/product" class="btn btn-dark" >Danh sách</a>
                     </div>
                 </form>

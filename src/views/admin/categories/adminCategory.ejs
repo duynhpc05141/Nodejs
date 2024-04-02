@@ -10,27 +10,32 @@
                 <div class="mb-2">
                     <a class="btn btn-dark" href="/admin/addCate">Thêm</a>
                 </div>
-                <table class="table table-bordered" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Tên Danh mục</th>
-                            <th>Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody id="listCate">
-                        <% stt =1; for(category of categories) {%>
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
                             <tr>
-                                <td><%= stt %></td>
-                                <td><%= category.category_name%></td>
-                                <td align="center">
-                                    <a href="<%= category.id %>" class="btn btn-dark">Sửa</a>
-                                    <a class="btn btn-danger" id="btnDelete">Xóa</a>
-                                </td>
-                              </tr>
-                        <% stt++ } %>
-                    </tbody>
-                </table>
+                                <th>STT</th>
+                                <th>Tên Danh mục</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listCate">
+                            <% stt =1; for(category of categories) {%>
+                                <tr>
+                                    <td><%= stt %></td>
+                                    <td><%= category.category_name%></td>
+                                    <td align="center" class="d-flex ">
+                                        <a href="/admin/updateCate/<%= category._id %>" class="btn btn-dark mr-1">Sửa</a>
+                                        <form action="/admin/deleteCate/<%= category._id %>?_method=DELETE" method="post">
+                                            <button type="submit" class="btn btn-danger mr-1" id="btnDelete" >Xóa</button>
+                                        </form>
+                                    </td>
+                                  </tr>
+                            <% stt++ } %>
+                            
+                        </tbody>
+                    </table>
+                
+                
             </div>
         </div>
     </div>

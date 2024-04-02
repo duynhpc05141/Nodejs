@@ -6,7 +6,7 @@
     <div class="card shadow mb-4">
       <div class="card-body">
         <div class="table-responsive" >
-          <form action="/admin/updateUser/<%= users._id %>" method="POST">
+          <form action="/admin/updateUser/<%= users._id %>?_method=PUT" method="POST">
             <div class="col-md-8 position-relative" >
               <label for="validationTooltip01" class="form-label">Họ tên</label>
               <input type="text" class="form-control" id="name" name="name" value="<%= users.customer_name %>"  required>

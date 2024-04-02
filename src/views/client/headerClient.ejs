@@ -36,7 +36,7 @@
         <div class="offcanvas__nav__option">
             <a href="#" class="search-switch"><img src="/img/icon/search.png" alt=""></a>
             <a href="#"><img src="/img/icon/cart.png" alt=""> <span>0</span></a>
-            <a href="#" style="color: black;">Đăng nhập</a>
+            <a href="/login" style="color: black;">Đăng nhập</a>
         </div>
         <div id="mobile-menu-wrap"></div>
     </div>
@@ -58,27 +58,11 @@
                 </nav>
             </div>
             <div class="col-lg-3 col-md-3">
-                <div class="header__nav__option" >
+                <div class="header__nav__option mt-4" >
                     <a href="#" class="search-switch"><img src="/img/icon/search.png" alt=""></a>
                     <a id="cart" class="mt-4"></a>
-                    <script>
-                        let userId = sessionStorage.getItem('id');
-                        if (userId) {
-                            let html = document.getElementById('cart');
-                            let cart = '';
-                           cart = `<a href="./pages/shopping-cart.html"><img src="/img/icon/cart.png" alt=""><span>0</span></a>
-                           <a href="#" class="btn ">Login</a>`;
-                            html.innerHTML = cart;
-                        }else{
-                            let html = document.getElementById('cart');
-                            let cart = '';
-                            cart = `<a href="./pages/login.html"><img src="/img/icon/cart.png" alt=""> <span>0</span></a>
-                            <a href="#" class="btn ">Login</a>`;
-                            html.innerHTML = cart;
-                        }
-                    </script>
-                    
-                    
+                    <a href="./pages/login.html"><img src="/img/icon/cart.png" alt=""> <span>0</span></a>
+                    <a href="/login" class="btn ">Đăng nhập</a> 
                 </div>
             </div>
         </div>

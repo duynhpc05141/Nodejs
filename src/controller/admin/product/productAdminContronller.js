@@ -31,6 +31,7 @@ const getProductDetail = async (req, res) =>{
 
 
 const postAddproduct = (req, res) => {
+    const file = req.file;
     let name = req.body.name;
     let price = req.body.price;
     let description = req.body.description;
@@ -38,7 +39,7 @@ const postAddproduct = (req, res) => {
     let sale = req.body.sale;
     let view = req.body.view;
     let cate = req.body.cate;
-    let img = req.body.img;
+    let img = file.filename;
 
     const newProduct = new Product({
         cate_id: cate,
@@ -61,9 +62,68 @@ const postAddproduct = (req, res) => {
         });
 }
 
+
+const getUpdateProduct = async (req, res) =>{
+    try {
+        const products = await Product.findOne({_id: req.params.id});
+        res.render('../views/admin/products/adminUpdateProduct.ejs',{products:products});
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    } 
+};
+
+const postUpdateProduct = async (req, res) => {
+    try {
+        const products = await Product.findById(req.params.id);
+        if (!products) {
+            return res.status(404).send('User not found');
+        }
+        let productImage = products.product_image;
+        if (req.file) {
+            productImage = req.file.filename;
+        }
+        const newUpdateProduct = {
+            cate_id: req.body.cate || products.cate_id,
+            product_description: req.body.description || products.product_description,
+            product_image: productImage,
+            product_name: req.body.name || products.product_name,
+            product_price: req.body.price || products.product_price,
+            product_status: req.body.status || products.product_status,
+            sale: req.body.sale || products.sale,
+            view: req.body.view || products.view
+        };
+
+        await Users.findOneAndUpdate({ _id: req.params.id }, newUpdateProduct, { new: true });
+
+        const product = await Product.find({});
+        res.render('../views/admin/products/adminProduct.ejs',{products:product}); // Chuyển hướng sau khi cập nhật thành công
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
+const deleteProductById = async (req, res) => {
+    try {
+        await Product.findByIdAndDelete({ _id:req.params.id });
+        const products = await Product.find({});
+        res.render('../views/admin/products/adminProduct.ejs',{products:products});
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
 //=================================================
 module.exports = {
     getAdminProduct,
     getAddProduct,
-    getProductDetail
+    getProductDetail,
+    postAddproduct,
+    deleteProductById,
+    getUpdateProduct,
+    postUpdateProduct
 };

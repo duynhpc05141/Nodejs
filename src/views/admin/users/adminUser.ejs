@@ -34,9 +34,12 @@
                             <td><%=users.customer_phone_number%></td>
                             <td><%=users.customer_address%></td>
                             <td><%=role%></td>
-                            <td>
-                                <a href="/admin/updateUser/<%= users._id %>" class="btn btn-dark">Sửa</a>
-                                <a class="btn btn-danger"  id="btnDelete" href="/admin/deleteUser/<%= users._id%>">Xóa</a>
+                            <td class="d-flex ">
+                                <a href="/admin/updateUser/<%= users._id %>" class="btn btn-dark mr-1">Sửa</a>
+                                <form action="/admin/deleteUser/<%= users._id%>?_method=DELETE" method="post">
+                                    <button type="submit" class="btn btn-danger mr-1"  id="btnDelete" >Xóa</button>
+                                </form>
+                                
                             </td>
                           </tr>
                         <% stt++; }%>
