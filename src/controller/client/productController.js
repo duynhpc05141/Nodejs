@@ -7,7 +7,6 @@ const Users = require('../../model/users');
 const getAllProduct = async (req, res) => {
     try {
         const product = await Product.find({});
-        console.log(product);
         res.render('../views/client/homePages.ejs', {product: product});
     } catch (error) {
         console.error(error);

@@ -31,16 +31,15 @@ const getProductDetail = async (req, res) =>{
 
 
 const postAddproduct = (req, res) => {
-    const file = req.file;
-    let name = req.body.name;
-    let price = req.body.price;
-    let description = req.body.description;
-    let status = req.body.status;
-    let sale = req.body.sale;
-    let view = req.body.view;
-    let cate = req.body.cate;
-    let img = file.filename;
-
+    let name = req.body.name | null;
+    let price = req.body.price | null;
+    let description = req.body.description | null;
+    let status = req.body.status | null;
+    let sale = req.body.sale | null;
+    let view = req.body.view | null;
+    let cate = req.body.cate | null;
+    let img = req.body.filename | null;
+    console.log(req.body);
     const newProduct = new Product({
         cate_id: cate,
         product_description: description,

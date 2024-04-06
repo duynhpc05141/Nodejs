@@ -25,6 +25,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!--===============================================================================================-->
 </head>
 <body>
@@ -33,7 +34,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<a href="/"><img src="/img/icon/out.jpg" alt="" height="50px" width="40px"></a>
-				<form class="login100-form validate-form" action="/login" method="post">
+				<form class="login100-form validate-form" action="/login" method="post" id="loginForm">
 					<h3 style="text-align: center;">Đăng nhập</h3>
 					<span class="login100-form-title p-b-48">
 						<img src="/img/DyBook2.png" alt="" width="300px">
@@ -72,7 +73,34 @@
 			</div>
 		</div>
 	</div>
-	
+	<script>
+        $(document).ready(function() {
+            $('#loginForm').submit(function(event) {
+                event.preventDefault();
+                const email = $('#email').val();
+                const password = $('#pass').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/login',
+                    data: {
+                        email: email,
+                        password: password
+                    },
+                    success: function(response) {
+                        // Lưu accessToken vào localStorage
+                        localStorage.setItem('accessToken', response.accessToken);
+                        localStorage.setItem('email', email);
+                        alert('Đăng nhập thành công!');
+                        window.location.href = '/';
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('Lỗi khi gửi yêu cầu đăng nhập:', error);
+                        alert('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+                    }
+                });
+            });
+        });
+    </script>
 
 	<div id="dropDownSelect1"></div>
 	

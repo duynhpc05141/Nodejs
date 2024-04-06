@@ -43,7 +43,7 @@
                     let price = product.product_price;
                     let content = product.product_description; // Nội dung của bài viết
                     // Tách nội dung thành các câu
-                    let sentences = content.split(' ');
+                    let sentences = content.split('');
                     // Khai báo biến limitedContent ở ngoài để sử dụng sau
                     let limitedContent ;
                     if (sentences.length > maxSentences) {

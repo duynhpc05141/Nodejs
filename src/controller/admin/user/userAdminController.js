@@ -21,7 +21,8 @@ const getAddUser = (req,res) => {
 
 const postAddUser = async (req, res) => {
     try {
-        let {name, phone, email , address , pass, role } = req.body;
+        let email  = req.body.email;
+        let pass  = req.body.pass;
         // Kiểm tra xem người dùng đã tồn tại chưa  
         const existingUser = await Users.findOne({ customer_email: email });
         if (existingUser) {
@@ -32,12 +33,12 @@ const postAddUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(pass, 10);
         // Tạo người dùng mới
         const userNew = new Users({
-            customer_address: address,
+            customer_address: req.body.address,
             customer_email: email,
-            customer_name: name,
-            customer_phone_number: phone,
+            customer_name: req.body.name,
+            customer_phone_number: req.body.phone,
             password: hashedPassword,
-            role_id: role
+            role_id: req.body.role
         });
         await userNew.save();
         const users = await Users.find({});

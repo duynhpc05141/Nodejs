@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const {
     getAllProduct, 
     getListProduct, 
@@ -9,12 +7,15 @@ const {
     getProductByCate,
     getAboutPage,} = require('../controller/client/productController');
 
-const {loginForm ,registerForm, postRegister,loggin} = require('../controller/client/login');
+const {loginForm ,registerForm, postRegister,loggin,profile,logOut} = require('../controller/client/login');
+const authenticateToken = require('../middleware/authenticateToken');
 // =============== CLINET======================
 
 router.get('/', getAllProduct);
 router.get('/login', loginForm);
 router.post('/login', loggin);
+router.get('/logOut', logOut);
+router.get('/profile', authenticateToken,profile );
 router.get('/register', registerForm);
 router.post('/register', postRegister);
 router.get('/shop', getListProduct);
