@@ -89,7 +89,11 @@
                     success: function(response) {
                         // Lưu accessToken vào localStorage
                         localStorage.setItem('accessToken', response.accessToken);
-                        localStorage.setItem('email', email);
+                        localStorage.setItem('email', response.userData.customer_email);
+                        localStorage.setItem('name', response.userData.customer_name);
+                        localStorage.setItem('address', response.userData.customer_address);
+                        localStorage.setItem('phone', response.userData.customer_phone_number);
+                        localStorage.setItem('role_id', response.userData.role_id);
                         alert('Đăng nhập thành công!');
                         window.location.href = '/';
                     },

@@ -43,13 +43,21 @@ const postRegister = async (req, res) => {
     }
 };
 
-
 const loggin = async (req, res) => {
     const email = req.body.email;
     const pass = req.body.password;
-
     try {
         const user = await Users.findOne({ customer_email: email });
+        const userData = {
+            _id: user._id,
+            customer_email: user.customer_email,
+            customer_name: user.customer_name,
+            customer_address: user.customer_address,
+            customer_phone_number: user.customer_phone_number,
+            password: user.password,
+            role_id: user.role_id
+        }
+        console.log(userData);
         // Kiểm tra xem người dùng tồn tại hay không
         if (user) {
             // So sánh mật khẩu
@@ -57,8 +65,8 @@ const loggin = async (req, res) => {
             
             if (passwordMatch) {
                 // Tạo JWT
-                const accessToken = jwt.sign({ customer_email: user.customer_email }, JWT_SECRET, { expiresIn: '1h' });
-                res.status(200).json({  success: true, accessToken, user });
+                const accessToken = jwt.sign({ userData }, JWT_SECRET, { expiresIn: '1h' });
+                res.status(200).json({  success: true, accessToken , userData });
             } else {
                 res.status(401).send('Invalid password.');
             }
